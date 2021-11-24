@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const passport = require('passport')
 const User = require('../models/user')
 
 router.get('/register', (req,res)=>{
@@ -20,6 +21,13 @@ router.post('/register', async (req,res)=>{
     
 })
 
+router.get('/login', (req,res)=>{
+    res.render('users/login')
+})
 
+router.post('/login', passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), (req,res)=>{
+    req.flash('success', 'Welcome back to WritePad!')
+    res.redirect('/writings')
+})
 
 module.exports = router;

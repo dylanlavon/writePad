@@ -1,17 +1,18 @@
 const express = require('express')
 const router = express.Router();
 const Writing = require('../models/writing')
+const {isLoggedIn} = require('../middleware')
 
 router.get('/', async (req,res) =>{
     const writings = await Writing.find({})
     res.render('writings/index', {writings})
 })
 
-router.get('/new', (req,res)=>{
+router.get('/new', isLoggedIn, (req,res)=>{
     res.render('writings/new')
 })
 
-router.post('/', async(req, res)=>{  
+router.post('/', isLoggedIn, async(req, res)=>{  
     const writing = new Writing(req.body.writing)
     await writing.save();
     req.flash('success', 'Successfully created a new Writing!')
@@ -27,7 +28,7 @@ router.get('/:id', async (req, res)=>{
     res.render('writings/show', {writing})
 })
 
-router.get('/:id/edit', async (req,res)=>{
+router.get('/:id/edit', isLoggedIn, async (req,res)=>{
     const writing = await Writing.findById(req.params.id)
     if(!writing){
         req.flash('error', 'Cannot find that Writing...')
@@ -36,14 +37,14 @@ router.get('/:id/edit', async (req,res)=>{
     res.render('writings/edit', {writing})
 })
 
-router.put('/:id', async(req,res)=>{
+router.put('/:id', isLoggedIn, async(req,res)=>{
     const {id} = req.params;
     const writing = await Writing.findByIdAndUpdate(id, {...req.body.writing})
     req.flash('success', 'Successfully updated Writing.')
     res.redirect(`/writings/${writing._id}`)
 })
 
-router.delete('/:id', async (req, res)=>{
+router.delete('/:id', isLoggedIn, async (req, res)=>{
     const {id} = req.params;
     await Writing.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted Writing.')
