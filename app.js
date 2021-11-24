@@ -3,8 +3,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
-const stories = require('./routes/stories')
-const reviews = require('./routes/reviews')
+const writings = require('./routes/writings')
+const ratings = require('./routes/ratings')
 const session = require('express-session')
 const flash = require('connect-flash')
 
@@ -48,8 +48,8 @@ app.use((req,res,next)=>{
 app.engine('ejs', ejsMate)
 
 
-app.use('/stories', stories)
-app.use('/stories/:id/reviews', reviews)
+app.use('/writings', writings)
+app.use('/writings/:id/ratings', ratings)
 
 app.get('/', (req,res) =>{
     res.render('home')

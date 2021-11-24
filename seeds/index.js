@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const storySeeds = require('./storySeeds')
-const Story = require('../models/story')
+const writingSeeds = require('./writingSeeds')
+const Writing = require('../models/writing')
 
 mongoose.connect('mongodb://localhost:27017/write-pad')
 
@@ -11,14 +11,14 @@ db.once("open", () =>{
 });
 
 const seedDB = async()=>{
-    await Story.deleteMany({});
+    await Writing.deleteMany({});
     for(let i = 0; i< 10; i++){
         const random3 = Math.floor(Math.random() * 3)
-        const story = new Story({
-            title: `${storySeeds[random3].title}`,
-            storyText: `${storySeeds[random3].storyText}`
+        const writing = new Writing({
+            title: `${writingSeeds[random3].title}`,
+            writingText: `${writingSeeds[random3].writingText}`
         })
-        await story.save()
+        await writing.save()
     }
 }
 

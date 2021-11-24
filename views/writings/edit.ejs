@@ -1,0 +1,21 @@
+<% layout('./layouts/boilerplate') %> 
+
+    <div class="row">
+        <h1 class="text-center">Edit Writing</h1>
+        <div class="col-6 offset-3">
+            <form action="/writings/<%= writing._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="writing[title]" value="<%= writing.title %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="writingText">Writing Text</label>
+                    <textarea class="form-control" type="text" id="writingText" name="writing[writingText]" rows="10" required><%= writing.writingText %></textarea>
+                </div>    
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Writing</button>
+                </div>  
+            </form>           
+            <a href="/writings/<%= writing._id %> ">Back to Writings</a>
+        </div>
+    </div>

@@ -1,0 +1,10 @@
+<% layout('./layouts/boilerplate') %> 
+    <h1>ALL WRITINGS</h1>
+    <div>
+        <a href="/writings/new">Add a Writing</a>
+    </div>
+
+        <% for (let writing of writings) {%> 
+            <li><a href="/writings/<%= writing._id %> "><%= writing.title %></a> </li>
+        <% } %> 
+
