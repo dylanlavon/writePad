@@ -5,7 +5,7 @@
         <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title"><%= writing.title %></h5>
-              <p class="card-text"><%= writing.writingText %></p>
+              <p class="card-text" style="white-space: pre-wrap"><%= writing.writingText %></p>
             </div>
             <div class="card-body">
               <a href="/writings/<%= writing._id %>/edit" class="card-link btn btn-info">Edit</a>
@@ -35,7 +35,7 @@
             <div class="card mb-3">
                 <div class=" card-body">
                     <h5 class="card-title">Rating: <%= rating.ratingValue %> </h5>
-                    <p class="card-text">Review: <%= rating.body %> </p>
+                    <p class="card-text" style="white-space: pre-wrap">Review: <%= rating.body %> </p>
                     <form action="/writings/<%= writing._id%>/ratings/<%= rating._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </form>
