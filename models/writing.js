@@ -5,6 +5,10 @@ const Rating = require('./rating')
 const WritingSchema = new Schema({
     title: String,
     writingText: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     ratings: [
         {
             type: Schema.Types.ObjectId,

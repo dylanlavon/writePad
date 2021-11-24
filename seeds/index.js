@@ -15,6 +15,7 @@ const seedDB = async()=>{
     for(let i = 0; i< 10; i++){
         const random3 = Math.floor(Math.random() * 3)
         const writing = new Writing({
+            author: '619ebd6a073503c92602fb4e',
             title: `${writingSeeds[random3].title}`,
             writingText: `${writingSeeds[random3].writingText}`
         })

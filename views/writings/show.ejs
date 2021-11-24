@@ -5,20 +5,27 @@
         <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title"><%= writing.title %></h5>
+              <div class="text-muted mb-3">
+                Submitted By <%= writing.author.username %> 
+              </div>  
               <p class="card-text" style="white-space: pre-wrap"><%= writing.writingText %></p>
             </div>
-            <div class="card-body">
-              <a href="/writings/<%= writing._id %>/edit" class="card-link btn btn-info">Edit</a>
-              <form class="d-inline" action="/writings/<%= writing._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete</button>
-            </form>
-            </div>
+            <% if(currentUser && writing.author.equals(currentUser._id)) { %> 
+                <div class="card-body">
+                <a href="/writings/<%= writing._id %>/edit" class="card-link btn btn-info">Edit</a>
+                <form class="d-inline" action="/writings/<%= writing._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                </div>
+            <% } %> 
             <div class="card-footer text-muted">
                 2 days ago
             </div>        
         </div>       
     </div>
     <div class="col-6">
+
+        <% if(currentUser){ %> 
         <h2>Leave a Rating</h2>
         <form class="mb-3" action="/writings/<%= writing._id %>/ratings" method="POST">
             <div class="mb-3">
@@ -31,14 +38,19 @@
             </div>
             <button class="btn btn-success">Submit</button>
         </form>
+        <% } %> 
+
         <% for(let rating of writing.ratings) {%> 
             <div class="card mb-3">
                 <div class=" card-body">
                     <h5 class="card-title">Rating: <%= rating.ratingValue %> </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">By <%= rating.author.username %> </h6>
                     <p class="card-text" style="white-space: pre-wrap">Review: <%= rating.body %> </p>
-                    <form action="/writings/<%= writing._id%>/ratings/<%= rating._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </form>
+                    <% if(currentUser && rating.author.equals(currentUser._id)) { %> 
+                        <form action="/writings/<%= writing._id%>/ratings/<%= rating._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    <% } %> 
                 </div>
             </div>
         
