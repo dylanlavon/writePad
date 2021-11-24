@@ -3,10 +3,15 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
-const writings = require('./routes/writings')
-const ratings = require('./routes/ratings')
 const session = require('express-session')
 const flash = require('connect-flash')
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+const User = require('./models/user')
+
+const writingRoutes = require('./routes/writings')
+const ratingRoutes = require('./routes/ratings')
+const userRoutes = require('./routes/users')
 
 mongoose.connect('mongodb://localhost:27017/write-pad')
 
@@ -39,6 +44,13 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 app.use(flash())
 
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 app.use((req,res,next)=>{
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error')
@@ -47,9 +59,9 @@ app.use((req,res,next)=>{
 
 app.engine('ejs', ejsMate)
 
-
-app.use('/writings', writings)
-app.use('/writings/:id/ratings', ratings)
+app.use('/', userRoutes)
+app.use('/writings', writingRoutes)
+app.use('/writings/:id/ratings', ratingRoutes)
 
 app.get('/', (req,res) =>{
     res.render('home')
