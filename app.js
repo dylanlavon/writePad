@@ -64,6 +64,7 @@ app.use('/', userRoutes)
 app.use('/writings', writingRoutes)
 app.use('/writings/:id/ratings', ratingRoutes)
 
+
 app.get('/', (req,res) =>{
     res.render('home')
 })
