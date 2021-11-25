@@ -6,7 +6,11 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true
     }
 })
 UserSchema.plugin(passportLocalMongoose)

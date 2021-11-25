@@ -11,7 +11,7 @@
               </div>  
               <p class="card-text" style="white-space: pre-wrap"><%= writing.writingText %></p>
             </div>
-            <% if(currentUser && writing.author.equals(currentUser._id)) { %> 
+            <% if((currentUser && writing.author.equals(currentUser._id)) || (currentUser && currentUser.isAdmin)) { %> 
                 <div class="card-body">
                 <a href="/writings/<%= writing._id %>/edit" class="card-link btn btn-info">Edit</a>
                 <form class="d-inline" action="/writings/<%= writing._id %>?_method=DELETE" method="POST">
@@ -58,7 +58,7 @@
                     <h5 class="card-title"><%= rating.author.username %></h5>    
                     <p class="starability-result" data-rating="<%= rating.ratingValue %>"></p>                                     
                     <p class="card-text" style="white-space: pre-wrap"><%= rating.body %> </p>
-                    <% if(currentUser && rating.author.equals(currentUser._id)) { %> 
+                    <% if((currentUser && rating.author.equals(currentUser._id)) || (currentUser && currentUser.isAdmin)) { %> 
                         <form action="/writings/<%= writing._id%>/ratings/<%= rating._id %>?_method=DELETE" method="POST">
                             <button class="btn btn-sm btn-danger">Delete</button>
                         </form>

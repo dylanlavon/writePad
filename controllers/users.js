@@ -6,8 +6,15 @@ module.exports.renderRegister = (req,res)=>{
 
 module.exports.register = async (req,res, next)=>{
     try{
-        const {email, username, password} = req.body
-        const user = new User({email, username})
+        if (req.body.isAdmin) {
+            req.body.isAdmin = true
+            console.log(req.body.isAdmin);
+     } else {
+            req.body.isAdmin = false
+            console.log(req.body.isAdmin);
+     }
+        const {email, username, password, isAdmin} = req.body
+        const user = new User({email, username, isAdmin})
         const registeredUser = await User.register(user, password)
         req.login(registeredUser, err =>{
             if(err){
@@ -15,6 +22,7 @@ module.exports.register = async (req,res, next)=>{
             } else {
                 req.flash('success', 'Welcome to WritePad!')
                 res.redirect('/writings')
+                console.log(user)
             }
         })      
     } catch(e) {
