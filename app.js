@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV !== 'production')
+{
+    require('dotenv').config()
+}
+
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -13,7 +18,12 @@ const writingRoutes = require("./routes/writings");
 const ratingRoutes = require("./routes/ratings");
 const userRoutes = require("./routes/users");
 
-mongoose.connect("mongodb://localhost:27017/write-pad");
+const MongoDBStore = require("connect-mongo")
+
+const dbUrl = process.env.DB_URL
+console.log(dbUrl)
+// mongoose.connect("mongodb://localhost:27017/write-pad");
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -30,8 +40,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+const secret = 'thisshouldbeabettersecret'
+
+const store = new MongoDBStore({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret
+    }
+})
+
+store.on("error", function(err){
+    console.log("SESSION STORE ERROR", err)
+})
+
 const sessionConfig = {
-    secret: "thisshouldbeabettersecret!",
+    store,
+    name: 'session',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
