@@ -1,3 +1,4 @@
+<!-- If the routing is succesful, flash a success message -->
 <% if(success && success.length){ %> 
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <%= success %> 
@@ -5,6 +6,7 @@
 </div>
 <% } %> 
 
+<!-- If the routing fails, flash an error message -->
 <% if(error && error.length){ %> 
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <%= error %> 

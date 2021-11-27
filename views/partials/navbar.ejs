@@ -1,3 +1,4 @@
+<!-- Navbar Partial to be included in boilerplate within each view. Links to Home, Writings, Write, Login, Register, and Login -->
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">>WritePad_</a>
@@ -11,6 +12,7 @@
           <a class="nav-link" href="/writings/new">Write</a>
         </div>
         <div class="navbar-nav ms-auto">
+          <!-- If the user is not logged in yet, display Login and Register buttons. If the user is logged in, display logout button -->
           <% if(!currentUser) { %> 
           <a href="/login" class="nav-link">Login</a>
           <a href="/register" class="nav-link">Register</a>

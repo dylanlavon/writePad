@@ -1,7 +1,9 @@
+// Require dependencies
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Rating = require("./rating");
 
+// Establish Writing Schema for MongoDB
 const WritingSchema = new Schema({
     title: String,
     writingText: String,
@@ -28,4 +30,5 @@ WritingSchema.post("findOneAndDelete", async function (doc) {
     }
 });
 
+// Export WritingSchema
 module.exports = mongoose.model("Writing", WritingSchema);

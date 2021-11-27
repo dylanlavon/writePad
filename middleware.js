@@ -1,6 +1,8 @@
+//Require Dependencies
 const Writing = require("./models/writing");
 const Rating = require("./models/rating");
 
+// Requiring this Middleware will in turn require a logged in User to access
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         //Store the URL They are Requesting
@@ -11,6 +13,7 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 };
 
+// Requiring this Middleware will in turn require the original author or admin status to access.
 module.exports.isAuthor = async (req, res, next) => {
     console.log(req.user.isAdmin);
     const { id } = req.params;
@@ -22,6 +25,7 @@ module.exports.isAuthor = async (req, res, next) => {
     }
 };
 
+// Requiring this Middleware will in turn require the original rating author or admin status to access.
 module.exports.isRatingAuthor = async (req, res, next) => {
     console.log(req.params);
     const { id, ratingId } = req.params;

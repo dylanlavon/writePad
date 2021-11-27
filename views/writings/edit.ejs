@@ -1,5 +1,7 @@
+<!-- Inlcude boilerplate -->
 <% layout('./layouts/boilerplate') %> 
 
+<!-- Render Edit form. Nearly identical to New form, but remembers past values. -->
     <div class="row">
         <h1 class="text-center">Edit Writing</h1>
         <div class="col-6 offset-3">
@@ -11,11 +13,15 @@
                 <div class="mb-3">
                     <label class="form-label" for="writingText">Writing Text</label>
                     <textarea class="form-control" type="text" id="writingText" name="writing[writingText]" rows="10" required><%= writing.writingText %></textarea>
-                </div>    
+                </div> 
+                
+                <!-- Submit button -->
                 <div class="mb-3">
                     <button class="btn btn-info">Update Writing</button>
                 </div>  
-            </form>           
+            </form>    
+            
+            <!-- Redirect user back to the original Writing -->
             <a href="/writings/<%= writing._id %> ">Back to Writings</a>
         </div>
     </div>

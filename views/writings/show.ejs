@@ -1,6 +1,8 @@
+<!-- Include Boilerplate and StarAbility's basic Star system -->
 <% layout('./layouts/boilerplate') %> 
 <link rel="stylesheet" href="/stylesheets/stars.css">
 
+<!-- Display Story card, includes title, author, and story text. -->
 <div class="row">
     <div class="col-6">
         <div class="card mb-3">
@@ -11,6 +13,8 @@
               </div>  
               <p class="card-text" style="white-space: pre-wrap"><%= writing.writingText %></p>
             </div>
+
+            <!-- If original author or admin, display edit / delete buttons at bottom of card -->
             <% if((currentUser && writing.author.equals(currentUser._id)) || (currentUser && currentUser.isAdmin)) { %> 
                 <div class="card-body">
                 <a href="/writings/<%= writing._id %>/edit" class="card-link btn btn-info">Edit</a>
@@ -26,6 +30,7 @@
     </div>
     <div class="col-6">
 
+        <!-- If an Author or Admin, allows the ability to leave a rating. -->
         <% if(currentUser){ %> 
         <h2>Leave a Rating</h2>
         <form class="mb-3" action="/writings/<%= writing._id %>/ratings" method="POST">
@@ -52,12 +57,15 @@
         </form>
         <% } %> 
 
+        <!-- Renders all current ratings. -->
         <% for(let rating of writing.ratings) {%> 
             <div class="card mb-3">
                 <div class=" card-body">
                     <h5 class="card-title"><%= rating.author.username %></h5>    
                     <p class="starability-result" data-rating="<%= rating.ratingValue %>"></p>                                     
                     <p class="card-text" style="white-space: pre-wrap"><%= rating.body %> </p>
+                    
+                    <!-- If original Rating creator or Admin, render Delete button -->
                     <% if((currentUser && rating.author.equals(currentUser._id)) || (currentUser && currentUser.isAdmin)) { %> 
                         <form action="/writings/<%= writing._id%>/ratings/<%= rating._id %>?_method=DELETE" method="POST">
                             <button class="btn btn-sm btn-danger">Delete</button>

@@ -1,6 +1,8 @@
+<!-- Include boilerplate -->
 <% layout('layouts/boilerplate') %> 
 <h1>Login</h1>
 
+<!-- User login form. Requires username and password -->
 <form action="/login" method="POST" class="">
 
     <div class="mb-3">
@@ -12,6 +14,7 @@
         <input class="form-control" type="password" id="password" name="password" required>
     </div>
 
+    <!-- Submit button -->
     <button class="btn btn-success">Login</button>
 
 </form>

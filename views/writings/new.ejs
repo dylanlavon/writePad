@@ -1,4 +1,7 @@
+<!-- Include boilerplate -->
 <% layout('./layouts/boilerplate') %> 
+
+<!-- Render New Writing Form -->
     <div class="row">
         <h1 class="text-center">New Writing</h1>
         <div class="col-6 offset-3">
@@ -11,10 +14,13 @@
                     <label class="form-label" for="writingText">Writing Text</label>
                     <textarea class="form-control" type="text" id="writingText" name="writing[writingText]" rows="10" required></textarea>
                 </div>    
+
+                <!-- Submit Button -->
                 <div class="mb-3">
                     <button class="btn btn-success">Add Writing</button>
                 </div>  
-            </form>           
+            </form>       
+                <!-- Redirect user back to all writings -->
             <a href="/writings">Back to All Writings</a>
         </div>
     </div>
