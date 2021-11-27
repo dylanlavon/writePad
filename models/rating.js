@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ratingSchema = new Schema({
@@ -6,8 +6,8 @@ const ratingSchema = new Schema({
     ratingValue: Number,
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-    }
-})
+        ref: "User",
+    },
+});
 
 module.exports = mongoose.model("Rating", ratingSchema);
