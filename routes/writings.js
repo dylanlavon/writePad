@@ -1,24 +1,25 @@
-// Require dependencies
+// Require External Dependencies
 const express = require("express");
 const router = express.Router();
-const { isLoggedIn } = require("../middleware");
-const { isAuthor } = require("../middleware");
+
+// Require Local Dependencies
+const { isLoggedIn, isAuthor } = require("../middleware");
 const writings = require("../controllers/writings");
 
-// /writings routes. Get index of writings / post new writing.
+// For the '/writings/' route, run the index function upon receiving a GET request, or, upon receiving a POST request, after verifying that the user is logged in, run the createWriting function.
 router.route("/").get(writings.index).post(isLoggedIn, writings.createWriting);
 
-// /writings/new route. Renders new form if user is logged in.
+// For the '/writings/new' route, upon receiving a GET request, after running the isLoggedIn function, run the renderNewForm function.
 router.get("/new", isLoggedIn, writings.renderNewForm);
 
-// /writings/:id routes. Renders Writing show page, puts edited Writing, deletes writing if user is Author / Admin.
+// For the '/writings/:id' route, run the showWriting function upon receiving a GET request, or, upon receiving a PUT request, after verifying that the user is logged in and has permission to modify the specified writing, run the updateWriting function, or, upon receiving a DELETE request, after verifying that the user is logged in and has permission to modify the specified writing, run the deleteWriting function.
 router
     .route("/:id")
     .get(writings.showWriting)
     .put(isLoggedIn, isAuthor, writings.updateWriting)
     .delete(isLoggedIn, isAuthor, writings.deleteWriting);
 
-// /writings/:id/edit route. Renders edit form if user is logged in and original Author / Admin.
+// For the '/writings/:id/edit' route, upon receiving a GET request, after verifying that the user is logged in and has permission to modify the specified writing, run the renderEditForm function.
 router.get("/:id/edit", isLoggedIn, isAuthor, writings.renderEditForm);
 
 // Export Routes

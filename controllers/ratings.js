@@ -1,8 +1,9 @@
-// Require dependencies
+// Require the Writing and Rating models
 const Writing = require("../models/writing");
 const Rating = require("../models/rating");
 
-// Creates a new rating and saves it to MongoDB Redirects to the new writing's show page.
+// The createRating function creates a new rating and saves it to MongoDB. It then redirects the user to the new Writing's show page.
+// Additionally, the createRating function is set as an asynchronous function in order to handle the asynchronous calls to MongoDB.
 module.exports.createRating = async (req, res) => {
     const writing = await Writing.findById(req.params.id);
     const rating = new Rating(req.body.rating);
@@ -14,9 +15,12 @@ module.exports.createRating = async (req, res) => {
     res.redirect(`/writings/${writing._id}`);
 };
 
-// Deletes a specific Rating. Flashes a success message, then redirects to the Writing's show page.
+// The deleteRating function deletes a specific Rating, displays a success message, then redirects to the associated Writing's show page.
+// Additionally, the deleteRating function is set as an asynchronous function in order to handle the asynchronous calls to MongoDB.
 module.exports.deleteRating = async (req, res) => {
-    const { id, ratingId: ratingId } = req.params;
+    // The following line is an object destructuring assignment (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+    // It simply declares the variables id and ratingId and sets them equal to the value of req.params.id and req.params.ratingId
+    const { id, ratingId } = req.params;
     await Writing.findByIdAndUpdate(id, { $pull: { ratings: ratingId } });
     await Rating.findByIdAndDelete(ratingId);
     req.flash("success", "Successfully deleted rating.");
