@@ -1,3 +1,7 @@
+// This model establishes and exports our Rating schema for our Mongo Database. By doing this, we can easily create and delete any rating obect,
+// as well as allowing us to easily identify and link the rating to a specific Writing and Author.
+// Module created in part by Dylan Britain, Trey Boyer, and Minjing Liang
+
 // Require Mongoose in order to interface with our MongoDB
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;

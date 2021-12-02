@@ -1,3 +1,8 @@
+// This module takes in data that has been passed by the users.js route and can register users, login users, log out users, or simply render the 
+// login page. 
+// We require the user model in order to add / delete user objects within our Mongo Database.
+// Module created in part by Dylan Britain, Trey Boyer, and Duy Tran
+
 // Require the User model
 const User = require("../models/user");
 

@@ -1,3 +1,7 @@
+// This module takes in data that has been passed by the ratings.js route and can either create or delete ratings stored on an uploaded writing.
+// We require the models for writings and ratings in order to add / delete rating objects within our Mongo Database.
+// Module created in part by Dylan Britain, Trey Boyer, and Christian Dominguez
+
 // Require the Writing and Rating models
 const Writing = require("../models/writing");
 const Rating = require("../models/rating");

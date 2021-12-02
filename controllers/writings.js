@@ -1,3 +1,8 @@
+// This module takes in data that has been passed by the writings.js route and can render our index page, render our new Writing form,
+// functionally create that writing in the DB, render Show pages, render Edit forms, and functionally edit and delete writings.
+// We require the writing model in order to add, edit, and delete writing objects within our Mongo Database.
+// Module created in part by Dylan Britain, Trey Boyer, and Duy Tran
+
 // Require the Writing model
 const Writing = require("../models/writing");
 

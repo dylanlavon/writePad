@@ -1,3 +1,8 @@
+// This module defines all of the routes pertaining to Writings - in particular, Creating new Writings, rendering the New and Edit Writing forms,
+// rendering the Show page, as well as updating and deleting Writings. Additionally, we require the isLoggedIn and isRatingAuthor
+// middleware to decide access and what to render.
+// Module created in part by Dylan Britain, Trey Boyer, and Christian Dominguez
+
 // Require External Dependencies
 const express = require("express");
 const router = express.Router();

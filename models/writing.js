@@ -1,3 +1,8 @@
+// This model establishes and exports our Writing schema for our Mongo Database. By doing this, we can easily create and manipulate any Writing obect,
+// as well as allowing us to easily identify and link the Writing to a specific User and Rating. This file also includes the middleware to delete 
+// Writings and their attached Ratings.
+// Module created in part by Dylan Britain, Trey Boyer, and Minjing Liang
+
 // Require Mongoose in order to interface with our MongoDB
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;

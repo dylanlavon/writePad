@@ -1,3 +1,7 @@
+// This module defines all of the routes pertaining to Users - in particular, Rendering the Login page, Passport Authentication, 
+// and logging users in / out.
+// Module created in part by Dylan Britain, Trey Boyer, and Christian Dominguez
+
 // Require External Dependencies
 const express = require("express");
 const router = express.Router();

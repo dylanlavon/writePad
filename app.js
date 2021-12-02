@@ -1,3 +1,7 @@
+// This app.js is essentially the heart of the whole application. This module establishes our connection with our Mongo Database and initializes
+// our Express Session. We also use this file to initialize Passport, set up our basic routes, and set our ports.
+// Module created in part by Dylan Britain, Trey Boyer, Duy Tran, Christian Dominguez, and Minjing Liang
+
 // If not running a production build, require the dotenv module
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();

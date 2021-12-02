@@ -1,3 +1,8 @@
+// This model establishes and exports our User schema for our Mongo Database. By doing this, we can easily create and manipulate any user obect,
+// as well as allowing us to easily identify and link the user to a specific Writing and Rating. Additionally, we utilize the PassportLocalMongoose
+// Node package to add easy authentication. PassportLocalMongoose also adds in username and password fields by default.
+// Module created in part by Dylan Britain, Trey Boyer, and Minjing Liang
+
 // Require Mongoose in order to interface with our MongoDB, as well as passport-local-mongoose to allow for local user authentication.
 // Note that, in this context, local means that authentication is done in this webapp with a traditional login scheme as opposed to a third-party service such as a "Login with Facebook" or "Login with Google" button.
 const mongoose = require("mongoose");

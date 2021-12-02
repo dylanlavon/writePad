@@ -1,3 +1,7 @@
+// This module is used to create three different middlewares that we call within routes - isLoggedIn, isAuthor, and isRatingAuthor.
+// By utilizing these middleware, we can redirect users if they are not authorized to view / edit / delete such content.
+// Module created in part by Dylan Britain, Trey Boyer, Duy Tran, Christian Dominguez, and Minjing Liang
+
 //Require Dependencies
 const Writing = require("./models/writing");
 const Rating = require("./models/rating");

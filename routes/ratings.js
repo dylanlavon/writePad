@@ -1,3 +1,7 @@
+// This module defines all of the routes pertaining to Ratings - in particular, creating and deleting Ratings. Additionally, we require the 
+// isLoggedIn and isRatingAuthor middleware to decide access and what to render.
+// Module created in part by Dylan Britain, Trey Boyer, and Christian Dominguez
+
 // Require External Dependencies
 const express = require("express");
 const router = express.Router({ mergeParams: true });
